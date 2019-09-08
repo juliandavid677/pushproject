@@ -14,14 +14,16 @@
                 <td>
                     <tr>
                         <p:outputLabel  value="#{msg.lblNombre}:" />
-                        <p:inputText id="nombre" value="#{indexController.nombre}" required="true" />  
+                        <p:inputText id="nombre" value="#{indexController.nombre}" required="true">
+                            <f:validator validatorId="validationName" />
+                        </p:inputText>
                     </tr>
                 </td>
                 <td>
                     <tr>
                         <p:outputLabel  value="#{msg.lblApellido}:" />
                         <p:inputText id="apellido" value="#{indexController.apellido}" required="true" >
-                            <f:validateLength rendererType="String"/>
+                            <f:validator validatorId="validationSurname" />
                         </p:inputText>
                     </tr>
                 </td>

@@ -1,6 +1,8 @@
 com\mycompany\controller\IndexController.class
 com\mycompany\enca\DatoPersona.class
 com\mycompany\enca\ActionNotify.class
+com\mycompany\validation\ValidationName.class
 com\mycompany\controller\PersonaBean.class
+com\mycompany\validation\ValidationSurname.class
 com\mycompany\controller\VerAdmin.class
 com\mycompany\enca\Notify.class
