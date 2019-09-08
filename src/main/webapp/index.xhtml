@@ -14,16 +14,16 @@
                 <td>
                     <tr>
                         <p:outputLabel  value="#{msg.lblNombre}:" />
-                        <p:inputText id="nombre" value="#{indexController.nombre}" required="true">
-                            <f:validator validatorId="validationName" />
+                        <p:inputText id="nombre" value="#{indexController.nombre}" required="true" validatorMessage="Nombre: El dato ingresado no es un caracter valido" >
+                            <f:validateRegex pattern="^[a-zA-Z]+$" />
                         </p:inputText>
                     </tr>
                 </td>
                 <td>
                     <tr>
                         <p:outputLabel  value="#{msg.lblApellido}:" />
-                        <p:inputText id="apellido" value="#{indexController.apellido}" required="true" >
-                            <f:validator validatorId="validationSurname" />
+                        <p:inputText id="apellido" value="#{indexController.apellido}" required="true" validatorMessage="Apellido El dato ingresado no es un caracter valido" >
+                            <f:validateRegex pattern="^[a-zA-Z]+$" />
                         </p:inputText>
                     </tr>
                 </td>
@@ -46,7 +46,9 @@
                 <td>
                     <tr>
                         <p:outputLabel  value="#{msg.lblOcupacion}" />
-                        <p:inputText id="ocupacion" value="#{indexController.ocupacion}"  required="true"/>  
+                        <p:inputText id="ocupacion" value="#{indexController.ocupacion}"  required="true" validatorMessage="Ocupación El dato ingresado no es un caracter valido" >
+                            <f:validateRegex pattern="^[a-zA-Z]+$" />
+                        </p:inputText>
                     </tr>
                 </td>
             </table>
