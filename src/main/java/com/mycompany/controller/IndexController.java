@@ -14,6 +14,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.push.EventBus;
@@ -53,6 +57,7 @@ public class IndexController implements Serializable {
     /**
      * Varialbe privada edad
      */
+    @Min(1) @Max(99)
     private Integer edad;
 
     /**

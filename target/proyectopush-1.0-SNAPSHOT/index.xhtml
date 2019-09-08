@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Multiventanas</title>
+        <title>#{msg.lblClien}</title>
     </h:head>
     <h:body>
         <h:form id="agregarForm">
@@ -13,34 +13,38 @@
             <table>
                 <td>
                     <tr>
-                        <p:outputLabel  value="#{msg.lblNombre}" />
-                        <p:inputText id="nombre" value="#{indexController.nombre}"  />  
+                        <p:outputLabel  value="#{msg.lblNombre}:" />
+                        <p:inputText id="nombre" value="#{indexController.nombre}" required="true" />  
                     </tr>
                 </td>
                 <td>
                     <tr>
-                        <p:outputLabel  value="Apellido: " />
-                        <p:inputText id="apellido" value="#{indexController.apellido}"  />  
+                        <p:outputLabel  value="#{msg.lblApellido}:" />
+                        <p:inputText id="apellido" value="#{indexController.apellido}" required="true" >
+                            <f:validateLength rendererType="String"/>
+                        </p:inputText>
                     </tr>
                 </td>
                 <td>
                     <tr>
-                        <p:outputLabel  value="Cedula: " />
-                        <p:inputText id="cedula" value="#{indexController.cedula}"  />  
+                        <p:outputLabel  value="#{msg.lblCedula}:" />
+                        <p:inputText id="cedula" value="#{indexController.cedula}"  required="true"> 
+                            <f:validateLength minimum="7" maximum="10"/>
+                        </p:inputText>
                     </tr>
                 </td>
                 <h:outputText value="&lt;br/&gt;" escape="false" />
                 <h:outputText value="&lt;br/&gt;" escape="false" />
                 <td>
                     <tr>
-                        <p:outputLabel  value="Edad:    " />
-                        <p:inputText id="edad" value="#{indexController.edad}"  />  
+                        <p:outputLabel  value="#{msg.lblEdad}:" />
+                        <p:inputText id="edad" value="#{indexController.edad}" required="true" />  
                     </tr>
                 </td>
                 <td>
                     <tr>
-                        <p:outputLabel  value="Ocupacion:    " />
-                        <p:inputText id="ocupacion" value="#{indexController.ocupacion}"  />  
+                        <p:outputLabel  value="#{msg.lblOcupacion}" />
+                        <p:inputText id="ocupacion" value="#{indexController.ocupacion}"  required="true"/>  
                     </tr>
                 </td>
             </table>
@@ -51,56 +55,45 @@
             <h:panelGrid columns="2" cellpadding="10">
                 <p:dataTable id="datosTabla" var="persona" value="#{indexController.persona.personaLista}" editable="true" style="margin-bottom:20px">
                     <f:facet name="header">
-                        Row Editing
+                        #{msg.lblTabla}
                     </f:facet>
-
                     <p:ajax event="rowEdit" listener="#{indexController.onRowEdit}" update=":tabla:msgs, :tabla:datosTabla" />
                     <p:ajax event="rowEditCancel" listener="#{indexController.onRowCancel}" update=":tabla:msgs" />
-
-                    <p:column headerText="Nombre">
+                    <p:column headerText="#{msg.lblNombre}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{persona.nombre}" /></f:facet>
                             <f:facet name="input"><p:inputText id="modelInput" value="#{persona.nombre}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column>
-
-                    <p:column headerText="Apellido">
+                    <p:column headerText="#{msg.lblApellido}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{persona.apellido}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{persona.apellido}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column>
-
-                    <p:column headerText="Cedula">
+                    <p:column headerText="#{msg.lblCedula}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{persona.cedula}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{persona.cedula}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column>     
-
-                    <p:column headerText="Edad">
+                    <p:column headerText="#{msg.lblEdad}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{persona.edad}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{persona.edad}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column> 
-                    
-                    <p:column headerText="Ocupacion">
+                    <p:column headerText="#{msg.lblOcupacion}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{persona.ocupacion}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{persona.ocupacion}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column> 
-
-
-
-
-
                     <p:column style="width:35px">
                         <p:rowEditor />
                     </p:column>
                     <p:column style="width:100px">
-                        <p:commandButton value="Eliminar" action="#{indexController.eliminar(persona)}" update=":agregarForm:msgs, :tabla:datosTabla" />
+                        <p:commandButton value="#{msg.btnEliminar}" action="#{indexController.eliminar(persona)}" onclick="return confirm('¿Estas seguro de eliminar este registro?')" update=":agregarForm:msgs, :tabla:datosTabla" />
                     </p:column>
                 </p:dataTable>
             </h:panelGrid>
